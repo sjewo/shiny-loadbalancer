@@ -3,11 +3,7 @@
 # baseurl: Full URL of the directory with shiny apps, trailing slash must be added
 
 makeRedirect <- function(appnames, baseurl) {
-  CPU <- read.table("/var/shiny-server/Data/CPU.txt") # 
-  App <- data.frame(app = appnames)
-  App <- merge(App, CPU, all.x = TRUE)
-  App$usr[which(is.na(App$usr))] <- 0
-  return(paste(baseurl, App$app[which.min(App$usr)],"/", sep = ""))
+  return(paste(baseurl, sample(appnames,1),"/", sep = ""))
 }
 
 # list only dirs
