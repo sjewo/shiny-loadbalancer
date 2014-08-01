@@ -7,7 +7,7 @@ makeRedirect <- function(appnames, baseurl) {
 }
 
 # list only dirs
-list.dirs <- function(path=".", pattern=NULL, all.dirs=FALSE,
+list.app.mirrors <- function(path=".", pattern=NULL, all.dirs=FALSE,
   full.names=FALSE, ignore.case=FALSE) {
 
   all <- list.files(path, pattern, all.dirs,
@@ -31,7 +31,7 @@ shinyServer(function(input, output, session) {
                                                       # if the load balancer appname is "histogram" 
                                                       # all apps named "histogram_1" or "histogram_2" 
                                                       # will be considered for load balancing
-                                                      list.dirs("../", pattern=paste0("^",pwd(),"_[0-9]")),
+                                                      list.app.mirrors("../", pattern=paste0("^",pwd(),"_[0-9]")),
                                                       "http://servername.com/")),
        # JavaScript for redirecting
        tags$script(type="text/javascript", src = "shiny-redirect.js")
